@@ -6,15 +6,19 @@ for(let i=0;i<target.length;i++){
     target[i].addEventListener('click', function(){
         var buttonInnerHTML=this.innerHTML;
         makeSound(buttonInnerHTML);
+        buttonAnimation(buttonInnerHTML);
         
  
     });}
 document.addEventListener('keydown',function(event){
     makeSound(event.key);
+    
+
 })    
 
 // Detecting keyboard press
 function makeSound(key){
+    buttonAnimation(key);
     switch (key) {
         case "w":
                  var tom1=new Audio('./sounds/tom-1.mp3');
@@ -50,4 +54,10 @@ function makeSound(key){
     }
 }
 
- 
+function buttonAnimation(currKey){
+var acticeButton=document.querySelector('.'+currKey)
+acticeButton.classList.add('pressed');
+setTimeout(function (){
+    acticeButton.classList.remove('pressed');
+}, 100);
+} 
